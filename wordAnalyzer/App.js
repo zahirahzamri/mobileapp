@@ -14,25 +14,22 @@ export default class App extends Component{
   wordAnalyzer = () => {
       let wordss = this.state.word.toLowerCase();
       let str = wordss.split('');
-      for(let char of str){
-        if(char == 'a'|| char == 'e'||char == 'i'||char == 'o'||char == 'u'){
-          this.setState((prevState) => ({
-            vowel: prevState.vowel + 1
-          }));
+      
+      this.setState({word: str, consonant:0, vowel:0},() => {
+        for(let char of str){
+          if(char == 'a'|| char == 'e'||char == 'i'||char == 'o'||char == 'u'){
+            this.setState((prevState) => ({
+              vowel: prevState.vowel + 1
+            }));
+          }
+          else if(char >= 'a' || char <= 'z'){
+            this.setState((prevState) => ({
+              consonant: prevState.consonant + 1
+            }));
+          }
         }
-        else if(char >= 'a' || char <= 'z'){
-          this.setState((prevState) => ({
-            consonant: prevState.consonant + 1
-          }));
-        }
-      }
-  }
-  clearScreen = () => {
-    this.setState({
-      word: '',
-      vowel: 0,
-      consonant: 0
-    })
+      });
+      this.textInput.clear();
   }
   render(){
       return(
@@ -41,23 +38,16 @@ export default class App extends Component{
 
           <View style={styles.container}>
             <Text style={{fontWeight: 'bold'}}>Word</Text>
-            <TextInput 
-              onChangeText={(word) => this.setState({word})}
-              style={styles.instructions} 
-              placeholder='Word to analyze'/> 
+            <TextInput onChangeText={(word) => this.setState({word})} style={styles.instructions} placeholder='Word to analyze' ref={input=>{this.textInput=input}}/> 
             <Text>{'\n\n'}</Text>
             <Button title ='Analyze' onPress= {this.wordAnalyzer}/>
-            <Button title='  Clear  ' 
-                    onPress={this.clearScreen} color='#B0C4DE'/>  
           </View>
 
           <View style={styles.container2}>
-            <Text><b>Word{"                        "}: </b>{this.state.word}</Text>
-            <Text><b>No. of Consonants{"  "}: </b>{this.state.consonant}</Text>
-            <Text><b>No. of Vowels{"          "}: </b>{this.state.vowel}</Text>
-            <Text><b>No. of Characters{"    "}: </b>
-                  {this.state.vowel + this.state.consonant}
-            </Text>
+            <Text>Word: {this.state.word}</Text>
+            <Text>No. of Consonants: {this.state.consonant}</Text>
+            <Text>No. of Vowels: {this.state.vowel}</Text>
+            <Text>No. of Characters: {this.state.vowel + this.state.consonant}</Text>
           </View>
         </View>
       );
