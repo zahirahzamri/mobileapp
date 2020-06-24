@@ -21,5 +21,5 @@ export const styles = StyleSheet.create({
     },
   container2:{
     marginBottom: 35,
-  }
+    }
 });
