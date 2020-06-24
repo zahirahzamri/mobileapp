@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#F5FCFF',
-      marginTop:25,
+      marginTop:15,
     },
   title: {
       fontSize: 20,
