@@ -11,7 +11,6 @@ export default class App extends Component{
       vowel: 0,
     }
   }
-
   wordAnalyzer = () => {
       let wordss = this.state.word.toLowerCase();
       let str = wordss.split('');
@@ -31,28 +30,25 @@ export default class App extends Component{
   clearScreen = () => {
     this.setState({
       word: '',
-      count: 0, 
-      vowels: 0,
-      consonants: 0
+      vowel: 0,
+      consonant: 0
     })
   }
-
   render(){
       return(
         <View style={styles.container}>
           <Text style={styles.title}>A Word Analyzer</Text>
 
           <View style={styles.container}>
-            <Text>Word</Text>
+            <Text style={{fontWeight: 'bold'}}>Word</Text>
             <TextInput 
               onChangeText={(word) => this.setState({word})}
               style={styles.instructions} 
-              placeholder='Word to analyze'/>   
-          </View>
-          
-          <View style={styles.container}>
-            <Button title = 'analyze' onPress= {this.wordAnalyzer}/>
-            <Button title='Clear' onPress={this.clearScreen} color="#841584"/>
+              placeholder='Word to analyze'/> 
+            <Text>{'\n\n'}</Text>
+            <Button title ='Analyze' onPress= {this.wordAnalyzer}/>
+            <Button title='  Clear  ' 
+                    onPress={this.clearScreen} color='#B0C4DE'/>  
           </View>
 
           <View style={styles.container2}>
